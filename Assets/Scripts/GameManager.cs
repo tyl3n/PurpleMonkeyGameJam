@@ -1,14 +1,20 @@
 ﻿using UnityEngine;
+using UnityEngine.SceneManagement;
 using System.Collections;
+
 
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance = null;
-    float HappinessValue;
-    public float MaxHappinessValue;
-    public float RateOfDescent = 10;
-    public float KitchenMultiplier = 2.0f;
-    public float EngineMultiplier = 1.5f;
+    bool isGameOver = false;
+    bool isGameWon = false;
+    public bool isDebugging = true;
+    public float HappinessValue = 0;
+    public float MaxHappinessValue = 100.0f;
+    public float RateOfDescent = 0.1f;
+    public float KitchenMultiplier = 5f;
+    public float EngineMultiplier = 2f;
+    float multiplier = 1;
     void Awake()
     {
         //Check if instance already exists
@@ -30,12 +36,62 @@ public class GameManager : MonoBehaviour
     void Start () {
         HappinessValue = MaxHappinessValue;
 	}
-	
+    void ProcessPassengerHappyness()
+    {
+        if (instance.HappinessValue > 0)
+            instance.HappinessValue -= instance.RateOfDescent * multiplier * Time.deltaTime;
+        else
+        {
+            isGameOver = true;
+            isGameOver = false;
+        }
+    }
+    void ProcessDebugEvent()
+    {
+        if (Input.GetButton("KitchenDebug"))
+        {
+            multiplier = KitchenMultiplier;
+        }
+        if (Input.GetButton("EngineDebug"))
+        {
+            multiplier = EngineMultiplier;
+        }
+        if (Input.GetButton("PassengerDebug"))
+        {
+            instance.HappinessValue += 1;
+        }
+    }
 	// Update is called once per frame
 	void FixedUpdate () {
 
-        float multiplier =  1;
-        HappinessValue -= RateOfDescent* multiplier;
+
+        ProcessPassengerHappyness();
+        if (isDebugging)
+            ProcessDebugEvent();
+       
     }
-    
+    void OnGUI()
+    {
+
+        if (isGameOver)
+        {
+            if (isGameWon)
+            {
+                GUI.Label(new Rect(Screen.height - 10, Screen.width - 40, 20, 80), "You WIN!");
+                if (GUI.Button(new Rect(Screen.height + 40, Screen.width - 80, 20, 20),"Play Again?"))
+                {
+                    SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+                }
+                    
+            }
+            else
+            {
+                GUI.Label(new Rect(Screen.height - 10, Screen.width - 40, 20, 80), "You Lose!");
+                if (GUI.Button(new Rect(Screen.height + 40, Screen.width - 80, 20, 20), "Play Again?"))
+                    Application.LoadLevel(1);
+            }
+
+        }
+    }
+
 }
