@@ -41,6 +41,9 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Ship
+    uniqueID: 3230734243
+    locked: 0
   - name: UpperSeat
     uniqueID: 568893121
     locked: 0
@@ -49,4 +52,7 @@ TagManager:
     locked: 0
   - name: LowerSeat
     uniqueID: 3324853879
+    locked: 0
+  - name: LowerWalls
+    uniqueID: 251214109
     locked: 0
