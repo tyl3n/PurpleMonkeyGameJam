@@ -3,26 +3,26 @@ using System.Collections;
 
 [RequireComponent(typeof(Collider))]
 public class EventRoom : MonoBehaviour {
+	
+	public string playerTag = "Player";
+	public float countDownTimerReset = 3f; // in seconds
+	public float roomHealAmount = 0.05f;
+	public float roomHealRate = 0.5f; // in seconds
+	public float roomBreakAmount = 0.01f;
+	public float roomBreakRate = 0.1f; // in seconds
 
-	public float timeUntilPeril = 10f; // in seconds
-	public float roomHealAmount = -0.1f;
-	public float roomHealSpeed = 0.5f; // in seconds
-	public float roomBreakAmount = 0.1f;
-	public float roomBreakSpeed = 0.5f; // in seconds
-
-
-	private string PLAYER_TAG = "Player";
 	private GameManager gm;
 
-	private float perilCountDownTimer;
+	private float countDownTimer;
 
-	private float perilValue;
+	public float perilValue; // public for debugging
 	private const float MAX_PERIL = 1f;
 	private const float MIN_PERIL = 0f;
 
 	private float perilChangeRate = 1f;
 	private float perilChangeAmount = 0;
 
+	public bool roomIsDead = false; // public for debugging
 	public bool inPeril = false; // public for debugging
 	public bool plyrInRoom = false; // public for debugging
 
@@ -34,33 +34,43 @@ public class EventRoom : MonoBehaviour {
 		// Make sure object's trigger is on
 		this.gameObject.GetComponent<Collider>().isTrigger = true;
 
+		// Init peril/danger and timer values
 		perilValue = MIN_PERIL;
+		this.ResetCountDownTimer();
 
-		this.ResetPerilTrigger();
-		StartCoroutine(ManagePerilTrigger());
-		StartCoroutine(ChangePerilValue());
+		// Begin count down timer and peril/danger tracker
+		StartCoroutine(this.ManageCountDownTimer());
+		StartCoroutine(this.ManagePerilValue());
 	}
 
 	void FixedUpdate(){
-		if(inPeril){ Debug.Log ("perilValue: " + perilValue); }
+		// Check if room is dead from too much peril
+		if (perilValue >= MAX_PERIL) {
+			roomIsDead = true;
+		} else{ roomIsDead = false; }
 
+
+		/***DECREASE PERIL***/
 		if(plyrInRoom) {
-			/***DECREASE PERIL***/
-			// When room is in perile and character doing "fixing" action
+			// Heal if room is in peril and character
+			// is doing "fixing" action
 			if(inPeril){
+				// Prevent peril value from decreasing without user input
 				this.DontChangePerilValue();
+
+				// Lower peril value by fix rate by mashing the "heal" key
 				if (Input.GetKeyUp(KeyCode.Space)) {
-					// Lower perile value by fix rate
-//					this.DecrPerilValue();
 					this.ManuallyDecrPerilValue();
 
+				// Lower peril value by fixed rate
 				} else if(Input.GetKey(KeyCode.Space)){
 					this.DecrPerilValue();
 				}
 			}
-		} else {
 
-			/***INCREASE PERIL***/
+		/***INCREASE PERIL***/
+		} else {
+			// Room breaks when the player is out of the room
 			if(inPeril) {
 				this.IncrPerilValue();
 			}
@@ -69,41 +79,43 @@ public class EventRoom : MonoBehaviour {
 
 	void OnTriggerEnter(Collider c){
 		// Check that the player entered the room
-		if(c.gameObject.CompareTag(PLAYER_TAG)){
+		if(c.gameObject.CompareTag(playerTag)){
 			plyrInRoom = true;
 		}
 	}
 
 	void OnTriggerExit(Collider c){
-		if(c.gameObject.CompareTag (PLAYER_TAG)){
+		// Check that the player left the room
+		if(c.gameObject.CompareTag (playerTag)){
 			plyrInRoom = false;
 
 			// Make sure peril does not increase immediately
 			// after player has left the room
-			this.ResetPerilTrigger();
+			this.ResetCountDownTimer();
 		}
 	}
 
+	/*****Accessors for GameManager*****/
 	public float GetPerilValue(){ return perilValue; }
 	public float GetMaxPerilValue(){ return MAX_PERIL; }
+	/**********************************/
 
-	/// Increase peril value
+	/// Tell manager to increase peril value
 	private void IncrPerilValue(){
-//		ChangePerilValue(1f, perilIncrRate);
-		perilChangeRate = roomBreakSpeed;
+		perilChangeRate = roomBreakRate;
 		perilChangeAmount = roomBreakAmount;
 	}
 
-	/// Decrease peril value
+	/// Tell manager to decrease peril value
 	private void DecrPerilValue(){
-//		ChangePerilValue(-1f, perilDecrRate);
-		perilChangeRate = roomHealSpeed;
-		perilChangeAmount = roomHealAmount;
+		perilChangeRate = roomHealRate;
+		perilChangeAmount = -roomHealAmount;
 		if(perilValue <= MIN_PERIL){ inPeril = false; }
 	}
 
+	/// Decrease peril value without using the manager
 	private void ManuallyDecrPerilValue(){
-		perilValue += roomHealAmount;
+		perilValue -= roomHealAmount;
 		if(perilValue > MAX_PERIL){ perilValue = MAX_PERIL; }
 		if(perilValue < MIN_PERIL){ perilValue = MIN_PERIL; }
 		if(perilValue <= MIN_PERIL){ inPeril = false; }
@@ -114,12 +126,13 @@ public class EventRoom : MonoBehaviour {
 		perilChangeAmount = 0;
 	}
 
-	/// Change peril value based dir (positive or negative)
-	/// and rate.
-	private IEnumerator ChangePerilValue(){
+	/// Change peril value by a specific amount at a
+	/// certain frequency
+	private IEnumerator ManagePerilValue(){
 		while(true){
 			yield return new WaitForSeconds(perilChangeRate);
 
+			// Change the peril/danger value
 			if(inPeril){
 				perilValue += perilChangeAmount;
 				if(perilValue > MAX_PERIL){ perilValue = MAX_PERIL; }
@@ -131,8 +144,13 @@ public class EventRoom : MonoBehaviour {
 		}
 	}
 
+
+	private void ResetCountDownTimer(){
+		countDownTimer = countDownTimerReset;
+	}
+
 	/// Decide when a room is in peril
-	private IEnumerator ManagePerilTrigger(){
+	private IEnumerator ManageCountDownTimer(){
 		while(true) {
 			yield return new WaitForSeconds (1f);
 
@@ -141,25 +159,16 @@ public class EventRoom : MonoBehaviour {
 			if(!plyrInRoom && !inPeril) {
 
 				// Count down (to 0)
-				perilCountDownTimer -= 1;
+				countDownTimer -= 1;
 
 				// Initiate increase in danger/chaos/peril
-				if(perilCountDownTimer <= 0) {
-					Debug.Log("!!!!!TRIGGERED!!!!!");
-					this.ResetPerilTrigger();
+				if(countDownTimer <= 0) {
+					this.ResetCountDownTimer();
 					inPeril = true;
 				}
-				Debug.Log("Peril Count Down Timer: " + perilCountDownTimer);
-			} else{ ResetPerilTrigger(); }
+				Debug.Log("Peril Count Down Timer: " + countDownTimer);
+			} else{ this.ResetCountDownTimer(); }
 		}
 	}
-
-	private void EscalalatePeril(){
-	}
-
-	private void ResetPerilTrigger(){
-		perilCountDownTimer = timeUntilPeril;
-	}
-
 
 }

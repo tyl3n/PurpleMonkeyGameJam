@@ -478,11 +478,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f1f6bd0c2a1f8a469293438cd1fb44c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timeUntilPeril: 3
-  roomHealAmount: -0.05
-  roomHealSpeed: 0.5
+  playerTag: Player
+  countDownTimerReset: 3
+  roomHealAmount: 0.05
+  roomHealRate: 0.5
   roomBreakAmount: 0.01
-  roomBreakSpeed: 0.1
+  roomBreakRate: 0.1
+  perilValue: 0
+  roomIsDead: 0
   inPeril: 0
   plyrInRoom: 0
 --- !u!65 &856116957
@@ -491,6 +494,44 @@ BoxCollider:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 856116955}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 9.75, y: 13, z: 11}
+  m_Center: {x: 0, y: 0.5, z: 0}
+--- !u!1 &870741386 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1000013114948504, guid: c1bacb2ffc8652b439849b295aa2b90f,
+    type: 2}
+  m_PrefabInternal: {fileID: 2045194977}
+--- !u!114 &870741387
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 870741386}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4f1f6bd0c2a1f8a469293438cd1fb44c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerTag: Player
+  countDownTimerReset: 3
+  roomHealAmount: 0.05
+  roomHealRate: 0.5
+  roomBreakAmount: 0.01
+  roomBreakRate: 0.1
+  perilValue: 0
+  roomIsDead: 0
+  inPeril: 0
+  plyrInRoom: 0
+--- !u!65 &870741388
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 870741386}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
@@ -813,3 +854,41 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!1 &2143955380 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1000013114948504, guid: c1bacb2ffc8652b439849b295aa2b90f,
+    type: 2}
+  m_PrefabInternal: {fileID: 348448420}
+--- !u!114 &2143955381
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2143955380}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4f1f6bd0c2a1f8a469293438cd1fb44c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerTag: Player
+  countDownTimerReset: 3
+  roomHealAmount: 0.05
+  roomHealRate: 0.5
+  roomBreakAmount: 0.01
+  roomBreakRate: 0.1
+  perilValue: 0
+  roomIsDead: 0
+  inPeril: 0
+  plyrInRoom: 0
+--- !u!65 &2143955382
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2143955380}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 9.75, y: 13, z: 11}
+  m_Center: {x: 0, y: 0.5, z: 0}
