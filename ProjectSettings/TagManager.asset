@@ -43,14 +43,23 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Space
+    uniqueID: 427450929
+    locked: 0
   - name: Ship
     uniqueID: 3230734243
+    locked: 0
+  - name: UpperAliens
+    uniqueID: 1672082209
     locked: 0
   - name: UpperSeat
     uniqueID: 568893121
     locked: 0
   - name: Pilot
     uniqueID: 1510303385
+    locked: 0
+  - name: LowerAliens
+    uniqueID: 3580233261
     locked: 0
   - name: LowerSeat
     uniqueID: 3324853879

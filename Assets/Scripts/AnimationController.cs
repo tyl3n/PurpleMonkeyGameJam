@@ -12,9 +12,21 @@ public class AnimationController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        bool horizontal = Input.GetAxis("Horizontal")>0.01 || Input.GetAxis("Horizontal")<-0.01;
-        anim.SetBool("Horizontal",horizontal);
-	    if (Input.GetAxis("Horizontal")<0)
+
+        bool up = Input.GetAxis("Vertical") > 0.001 && (Input.GetAxis("Horizontal") < 0.2|| Input.GetAxis("Horizontal") > -0.2);
+        anim.SetBool("Up", up);
+        bool down = Input.GetAxis("Vertical") < -0.001 && (Input.GetAxis("Horizontal") < 0.2 || Input.GetAxis("Horizontal") > -0.2);
+        anim.SetBool("Down", down);
+        if (!up && !down)
+        {
+            bool horizontal = Input.GetAxis("Horizontal") > 0.01 || Input.GetAxis("Horizontal") < -0.01;
+            anim.SetBool("Horizontal", horizontal);
+        }
+        else
+        {
+            anim.SetBool("Horizontal", false);
+        }
+        if (Input.GetAxis("Horizontal")<0)
         {
             spriteRender.flipX = true;
         }
