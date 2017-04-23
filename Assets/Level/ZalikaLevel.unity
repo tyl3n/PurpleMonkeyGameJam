@@ -479,8 +479,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timeUntilPeril: 3
-  perilDecrRate: 1
-  perilIncrRate: 0.1
+  roomHealAmount: -0.05
+  roomHealSpeed: 0.5
+  roomBreakAmount: 0.01
+  roomBreakSpeed: 0.1
   inPeril: 0
   plyrInRoom: 0
 --- !u!65 &856116957
