@@ -50,11 +50,11 @@ public class GameManager : MonoBehaviour
     {
         if (Input.GetButton("KitchenDebug"))
         {
-            multiplier = KitchenMultiplier;
+            multiplier += KitchenMultiplier;
         }
         if (Input.GetButton("EngineDebug"))
         {
-            multiplier = EngineMultiplier;
+            multiplier += EngineMultiplier;
         }
         if (Input.GetButton("PassengerDebug"))
         {
