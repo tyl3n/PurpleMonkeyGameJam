@@ -5,7 +5,8 @@ using System.Collections;
 public class EventRoom : MonoBehaviour {
 	
 	public string playerTag = "Player";
-	public float countDownTimerReset = 3f; // in seconds
+	public int countDownTimerMin = 3; // inclusive
+	public int countDownTimerMax = 10; // exclusive
 	public float roomHealAmount = 0.05f;
 	public float roomHealRate = 0.5f; // in seconds
 	public float roomBreakAmount = 0.01f;
@@ -14,6 +15,7 @@ public class EventRoom : MonoBehaviour {
 	private GameManager gm;
 
 	private float countDownTimer;
+	public int countDownTimerReset = 3; // global and public for debugging
 
 	public float perilValue; // public for debugging
 	private const float MAX_PERIL = 1f;
@@ -91,7 +93,7 @@ public class EventRoom : MonoBehaviour {
 
 			// Make sure peril does not increase immediately
 			// after player has left the room
-			this.ResetCountDownTimer();
+//			this.ResetCountDownTimer();
 		}
 	}
 
@@ -146,6 +148,7 @@ public class EventRoom : MonoBehaviour {
 
 
 	private void ResetCountDownTimer(){
+		countDownTimerReset = Random.Range(countDownTimerMin, countDownTimerMax);
 		countDownTimer = countDownTimerReset;
 	}
 
@@ -167,7 +170,7 @@ public class EventRoom : MonoBehaviour {
 					inPeril = true;
 				}
 				Debug.Log("Peril Count Down Timer: " + countDownTimer);
-			} else{ this.ResetCountDownTimer(); }
+			}
 		}
 	}
 

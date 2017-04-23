@@ -12,7 +12,7 @@ public class TestManager : MonoBehaviour {
 	}
 	
 	// Update is called once per frame
-	void Update () {
+	void FixedUpdate () {
 		Debug.Log(""+this.PerilScoreCard());
 	}
 
