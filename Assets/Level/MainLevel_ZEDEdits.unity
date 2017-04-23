@@ -238,10 +238,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isGameWon: 0
-  maxTime: 10
+  maxTime: 2
   isDebugging: 1
   HappinessValue: 0
-  MaxHappinessValue: 10
+  MaxHappinessValue: 100
   RateOfDescent: 10
   KitchenMultiplier: 2
   EngineMultiplier: 1.5

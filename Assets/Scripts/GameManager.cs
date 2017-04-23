@@ -61,6 +61,9 @@ public class GameManager : MonoBehaviour
 		gameWonCard.SetActive(false);
 	}
 
+	public bool IsGameWon(){ return isGameWon; }
+	public bool IsGameOver(){ return isGameOver; }
+
     void ProcessPassengerHappiness()
     {
         if (instance.HappinessValue >= 0)
@@ -124,15 +127,14 @@ public class GameManager : MonoBehaviour
 //            if (GUI.Button(new Rect(Screen.height + 40, Screen.width - 80, 20, 20),"Play Again?"))
 //            {
 //                SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-//            }
-                
+//            }                
         }
 
 		if (isGameOver)
 		{
 			gameOverCard.SetActive(true);
 			TogglePlryMovement(false);
-			StopCoroutine(ManageWinConditionTimer());
+			StopAllCoroutines();//(ManageWinConditionTimer());
 //            GUI.Label(new Rect(Screen.height - 10, Screen.width - 40, 20, 80), "You Lose!");
 //            if (GUI.Button(new Rect(Screen.height + 40, Screen.width - 80, 20, 20), "Play Again?"))
 //                Application.LoadLevel(1);
@@ -155,10 +157,9 @@ public class GameManager : MonoBehaviour
 			if (winTimer <= 0 && HappinessValue > 0) {
 				winTimer = 0;
 				isGameWon = true;
-				StopCoroutine(ManageWinConditionTimer());
+				StopAllCoroutines ();//(ManageWinConditionTimer());
 			}
 		}
-
 	}
 
 }
