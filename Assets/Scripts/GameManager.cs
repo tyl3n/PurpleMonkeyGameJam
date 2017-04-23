@@ -153,7 +153,6 @@ public class GameManager : MonoBehaviour
 			yield return new WaitForSeconds (0.1f);
 
 			winTimer -= 0.1f;
-			Debug.Log ("timer: " + winTimer);
 			if (winTimer <= 0 && HappinessValue > 0) {
 				winTimer = 0;
 				isGameWon = true;
