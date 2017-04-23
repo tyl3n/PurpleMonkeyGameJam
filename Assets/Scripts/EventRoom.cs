@@ -36,8 +36,7 @@ public class EventRoom : MonoBehaviour {
 	}
 
 	void FixedUpdate(){
-
-		if(inPeril) Debug.Log ("perilValue: " + perilVal);
+		if(inPeril){ Debug.Log ("perilValue: " + perilVal); }
 
 		if(plyrInRoom) {
 			/***DECREASE PERIL***/
@@ -83,6 +82,7 @@ public class EventRoom : MonoBehaviour {
 	/// Decrease peril value
 	private void decrPerilValue(){
 		changePerilValue(-1f, perilDecrRate);
+		if(perilVal <= 0){ inPeril = false; }
 	}
 
 	/// Change peril value based dir (positive or negative)
@@ -108,9 +108,9 @@ public class EventRoom : MonoBehaviour {
 					this.ResetPerilTrigger ();
 					inPeril = true;
 				}
+				Debug.Log("Peril Count Down Timer: " + perilCountDownTimer);
 			} else{ ResetPerilTrigger(); }
 
-			Debug.Log("Peril Count Down Timer: " + perilCountDownTimer);				
 		}
 
 
