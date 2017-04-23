@@ -46,6 +46,10 @@ public class EventRoom : MonoBehaviour {
 	}
 
 	void FixedUpdate(){
+		if (gm.IsGameWon () || gm.IsGameOver ()) {
+			StopAllCoroutines();
+		}
+
 		// Check if room is dead from too much peril
 		if (perilValue >= MAX_PERIL) {
 			roomIsDead = true;
