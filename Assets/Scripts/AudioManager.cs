@@ -109,18 +109,23 @@ public class AudioManager : MonoBehaviour {
 		}
 	}
 
-	//function is called from an animation event
+	//function is called from the footstep controller script on the player
 	public void PlayFootstepWalk (){
 
-		footstepSource.clip = footstepsWalk[Random.Range(0,footstepsWalk.Length)];
-		footstepSource.pitch = Random.Range (0.75f, 1.5f);
-		footstepSource.volume = Random.Range (0.75f, 0.85f);
-		footstepSource.Play ();
+		if (footstepIsPlaying == false) {	
+
+			footstepIsPlaying = true;
+
+			footstepSource.clip = footstepsWalk [Random.Range (0, footstepsWalk.Length)];
+			footstepSource.pitch = Random.Range (0.75f, 1.5f);
+			footstepSource.volume = Random.Range (0.75f, 0.85f);
+			footstepSource.Play ();
+		}
 
 	}
 
 
-	//function is called from an animation event
+	//function is called from the footstep controller script on the player
 	public void PlayFootstepRun (){
 
 		if (footstepIsPlaying == false){	
