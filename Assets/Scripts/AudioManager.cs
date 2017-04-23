@@ -14,7 +14,7 @@ public class AudioManager : MonoBehaviour {
 	public AudioClip[] footstepsRun; //holds audioclips for footsteps when running
 	public AudioClip[] alienVoices; //Holds audioclips for aliens
 
-
+	public bool footstepIsPlaying = false;
 //	bool mxTwoIsPlaying = false;
 //	bool mxThreeIsPlaying = false;
 
@@ -62,25 +62,25 @@ public class AudioManager : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 	
-		if (GameManager.instance.HappinessValue < 65 ) {
+		if (GameManager.instance.HappinessValue < 50 ) {
 
 			StartCoroutine (FadeIn (mxSource[1], fadeInTime, mx2Vol));
 
 		}
 
-		if (GameManager.instance.HappinessValue > 65 ) {
+		if (GameManager.instance.HappinessValue > 50 ) {
 
 			StartCoroutine (FadeOut (mxSource[1], fadeOutTime));
 		
 		}
 
-		if (GameManager.instance.HappinessValue < 35 ) {
+		if (GameManager.instance.HappinessValue < 25 ) {
 		
 			StartCoroutine (FadeIn (mxSource[2], fadeInTime, mx3Vol));
 		
 		}
 
-		if (GameManager.instance.HappinessValue > 35 ) {
+		if (GameManager.instance.HappinessValue > 25 ) {
 		
 			StartCoroutine (FadeOut (mxSource[2], fadeOutTime));
 
@@ -109,29 +109,39 @@ public class AudioManager : MonoBehaviour {
 		}
 	}
 
-	//function is called from an animation event
+	//function is called from the footstep controller script on the player
 	public void PlayFootstepWalk (){
 
-		footstepSource.clip = footstepsWalk[Random.Range(0,footstepsWalk.Length)];
-		footstepSource.pitch = Random.Range (0.75f, 1.5f);
-		footstepSource.volume = Random.Range (0.75f, 0.85f);
-		footstepSource.Play ();
+		if (footstepIsPlaying == false) {	
+
+			footstepIsPlaying = true;
+
+			footstepSource.clip = footstepsWalk [Random.Range (0, footstepsWalk.Length)];
+			footstepSource.pitch = Random.Range (0.75f, 1.5f);
+			footstepSource.volume = Random.Range (0.75f, 0.85f);
+			footstepSource.Play ();
+		}
 
 	}
 
 
-	//function is called from an animation event
+	//function is called from the footstep controller script on the player
 	public void PlayFootstepRun (){
 
-		footstepSource.clip = footstepsRun[Random.Range(0,footstepsRun.Length)];
-		footstepSource.pitch = Random.Range (0.75f, 1.5f);
-		footstepSource.volume = Random.Range (0.75f, 0.85f);
-		footstepSource.Play ();
+		if (footstepIsPlaying == false){	
 
+			footstepIsPlaying = true;
+
+			footstepSource.clip = footstepsRun [Random.Range (0, footstepsRun.Length)];
+			footstepSource.pitch = Random.Range (0.75f, 1.5f);
+			footstepSource.volume = Random.Range (0.75f, 0.85f);
+			footstepSource.Play ();
+		}
+
+		}
 	}
 
 
 
 
 
-}
