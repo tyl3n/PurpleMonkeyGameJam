@@ -21,7 +21,11 @@ public class AudioManager : MonoBehaviour {
 	[SerializeField]
 	float mx1Vol; //maximum volume of music
 	[SerializeField]
+	float mxBassVol; //maximum volume of music
+	[SerializeField]
 	float mx2Vol; //maximum volume of music
+	[SerializeField]
+	float mxGuitarVol; //maximum volume of music
 	[SerializeField]
 	float mx3Vol; //maximum volume of music
 
@@ -55,6 +59,7 @@ public class AudioManager : MonoBehaviour {
 		DontDestroyOnLoad (gameObject);
 
 		mxSource[0].volume = mx1Vol;
+		mxSource[1].volume = mxBassVol;
 
 	}
 		
@@ -62,27 +67,35 @@ public class AudioManager : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 	
-		if (GameManager.instance.HappinessValue < 50 ) {
+		if (GameManager.instance.HappinessValue < 60 ) {
 
-			StartCoroutine (FadeIn (mxSource[1], fadeInTime, mx2Vol));
-
-		}
-
-		if (GameManager.instance.HappinessValue > 50 ) {
-
+			StartCoroutine (FadeIn (mxSource[2], fadeInTime, mx2Vol));
+			StartCoroutine (FadeIn (mxSource[3], fadeInTime, mxGuitarVol));
 			StartCoroutine (FadeOut (mxSource[1], fadeOutTime));
-		
+
+
 		}
 
-		if (GameManager.instance.HappinessValue < 25 ) {
-		
-			StartCoroutine (FadeIn (mxSource[2], fadeInTime, mx3Vol));
-		
-		}
+		if (GameManager.instance.HappinessValue > 60) {
 
-		if (GameManager.instance.HappinessValue > 25 ) {
-		
 			StartCoroutine (FadeOut (mxSource[2], fadeOutTime));
+			StartCoroutine (FadeOut (mxSource[3], fadeOutTime));
+
+			StartCoroutine (FadeIn (mxSource[1], fadeInTime, mxBassVol));
+		
+		}
+
+		if (GameManager.instance.HappinessValue < 30 ) {
+		
+			StartCoroutine (FadeIn (mxSource[4], fadeInTime, mx3Vol));
+			StartCoroutine (FadeOut (mxSource[3], fadeOutTime));
+		
+		}
+
+		if (GameManager.instance.HappinessValue > 30 && GameManager.instance.HappinessValue < 60  ) {
+		
+			StartCoroutine (FadeOut (mxSource[4], fadeOutTime));
+			StartCoroutine (FadeIn (mxSource[3], fadeInTime, mxGuitarVol));
 
 		}
 	
