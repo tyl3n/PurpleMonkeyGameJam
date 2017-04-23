@@ -1,14 +1,17 @@
 fileFormatVersion: 2
-guid: 127e5a5cb6bd2984cbf93d7099da16ce
-timeCreated: 1492975130
+guid: 24f90e47d6fba6746bc1f3e2199fe8d9
+timeCreated: 1492972708
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
-    21300000: ALIENS_0
-    21300002: ALIENS_1
-    21300004: ALIENS_2
-    21300006: ALIENS_3
-    21300008: ALIENS_4
+    21300000: Pilot_Walk_Back_Front (2)_0
+    21300002: Pilot_Walk_Back_Front (2)_1
+    21300004: Pilot_Walk_Back_Front (2)_2
+    21300006: Pilot_Walk_Back_Front (2)_3
+    21300008: Pilot_Walk_Back_Front (2)_4
+    21300010: Pilot_Walk_Back_Front (2)_5
+    21300012: Pilot_Walk_Back_Front (2)_6
+    21300014: Pilot_Walk_Back_Front (2)_7
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -58,67 +61,106 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: ALIENS_0
+      name: Pilot_Walk_Back_Front (2)_0
       rect:
         serializedVersion: 2
-        x: 28
-        y: 62
-        width: 249
-        height: 372
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: ALIENS_1
-      rect:
-        serializedVersion: 2
-        x: 317
-        y: 43
-        width: 244
-        height: 377
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: ALIENS_2
-      rect:
-        serializedVersion: 2
-        x: 587
-        y: 66
-        width: 230
-        height: 367
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: ALIENS_3
-      rect:
-        serializedVersion: 2
-        x: 885
-        y: 67
-        width: 306
-        height: 382
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: ALIENS_4
-      rect:
-        serializedVersion: 2
-        x: 1205
-        y: 71
+        x: 115
+        y: 564
         width: 209
-        height: 378
+        height: 354
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Pilot_Walk_Back_Front (2)_1
+      rect:
+        serializedVersion: 2
+        x: 412
+        y: 563
+        width: 191
+        height: 341
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Pilot_Walk_Back_Front (2)_2
+      rect:
+        serializedVersion: 2
+        x: 736
+        y: 563
+        width: 209
+        height: 349
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Pilot_Walk_Back_Front (2)_3
+      rect:
+        serializedVersion: 2
+        x: 1033
+        y: 561
+        width: 191
+        height: 343
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Pilot_Walk_Back_Front (2)_4
+      rect:
+        serializedVersion: 2
+        x: 103
+        y: 80
+        width: 209
+        height: 363
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Pilot_Walk_Back_Front (2)_5
+      rect:
+        serializedVersion: 2
+        x: 434
+        y: 65
+        width: 191
+        height: 363
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Pilot_Walk_Back_Front (2)_6
+      rect:
+        serializedVersion: 2
+        x: 739
+        y: 80
+        width: 209
+        height: 363
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Pilot_Walk_Back_Front (2)_7
+      rect:
+        serializedVersion: 2
+        x: 1033
+        y: 65
+        width: 191
+        height: 363
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
