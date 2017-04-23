@@ -508,18 +508,18 @@ MonoBehaviour:
   footstepSource: {fileID: 82000013995919226}
   shipRumble: {fileID: 82000013708784572}
   footstepsWalk:
-  - {fileID: 8300000, guid: 0f07452cb1cde452197ddc82c664879d, type: 3}
-  - {fileID: 8300000, guid: 6c1fface190e640e2ac6dc1b8df4096a, type: 3}
-  - {fileID: 8300000, guid: 1143fe23156804c5984534d205b5117f, type: 3}
-  - {fileID: 8300000, guid: d14b7007966d5494cae891cf65747138, type: 3}
-  - {fileID: 8300000, guid: 93718a2bcdfd640db866a8157cc1af5f, type: 3}
+  - {fileID: 8300000, guid: 943e0522fc84a412292bcdf7979f59e3, type: 3}
+  - {fileID: 8300000, guid: 4084f2ff43410418eb5a07208fdd70a1, type: 3}
+  - {fileID: 8300000, guid: 4a4876b2438fb4cc5bda897b4d20f235, type: 3}
+  - {fileID: 8300000, guid: b6245a22312e84de9b19451694543ea7, type: 3}
+  - {fileID: 8300000, guid: d1b15a1130afb4331a4348727b7e4bb7, type: 3}
   footstepsRun:
-  - {fileID: 8300000, guid: ee9bc8d127a3a4c36ab58a4af1884437, type: 3}
-  - {fileID: 8300000, guid: 1e2cfee6958d94871b610905e2414fb0, type: 3}
-  - {fileID: 8300000, guid: 1a99876cb90a64230b3fd5c2531c1cb0, type: 3}
-  - {fileID: 8300000, guid: fcec7e4d5274d4ddb983b698b2dc1791, type: 3}
-  - {fileID: 8300000, guid: eeb34ac99e9a34917aad8ae71bbfe9e6, type: 3}
-  - {fileID: 8300000, guid: f2c54ad3c0a904300a4c5e19510218fc, type: 3}
+  - {fileID: 8300000, guid: e53555797c7614969aede0015dde308a, type: 3}
+  - {fileID: 8300000, guid: b3122d9bfab6e4ea1829d9afe5b67e50, type: 3}
+  - {fileID: 8300000, guid: 6aedb67edbe794e5baba10a9b442e6cf, type: 3}
+  - {fileID: 8300000, guid: 421b6de0808dd4b6eac7df79789611df, type: 3}
+  - {fileID: 8300000, guid: acadad6c6c1cd49268d8fad94ad2e238, type: 3}
+  - {fileID: 8300000, guid: 50b873f79735b416a9c3125f4dffc5c0, type: 3}
   alienVoices:
   - {fileID: 8300000, guid: a54e9953700564fa49a7153ca94e1df1, type: 3}
   - {fileID: 8300000, guid: 46ed0cea743b4401c841bd237529976b, type: 3}
@@ -529,8 +529,9 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 85337772389b141f18fc0d318c56cb07, type: 3}
   - {fileID: 8300000, guid: 23da4e0a87aa544508136c78d9e35ca0, type: 3}
   - {fileID: 8300000, guid: 867a6b7b8aa2d4fbc969d0e4a86e5aef, type: 3}
-  mx1Vol: 0.2
-  mx2Vol: 0.15
+  footstepIsPlaying: 0
+  mx1Vol: 0.1
+  mx2Vol: 0.08
   mx3Vol: 0.02
   rumbleVol: 1
   fadeInTime: 3
