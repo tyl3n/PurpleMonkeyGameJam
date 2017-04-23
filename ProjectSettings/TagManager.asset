@@ -41,18 +41,12 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
-  - name: FirstLowerSeat
-    uniqueID: 3324853879
-    locked: 0
-  - name: SecondLowerSeat
-    uniqueID: 943508795
+  - name: UpperSeat
+    uniqueID: 568893121
     locked: 0
   - name: Pilot
     uniqueID: 1510303385
     locked: 0
-  - name: FirstUpperSeat
-    uniqueID: 568893121
-    locked: 0
-  - name: SecondUpperSeat
-    uniqueID: 4167946607
+  - name: LowerSeat
+    uniqueID: 3324853879
     locked: 0
