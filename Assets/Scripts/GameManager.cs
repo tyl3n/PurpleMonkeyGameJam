@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using System.Collections;
 
@@ -6,15 +7,29 @@ using System.Collections;
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance = null;
+
     bool isGameOver = false;
-    bool isGameWon = false;
+    public bool isGameWon = false; // public for testing
+
+	public float maxTime = 60f; // in seconds
+
     public bool isDebugging = true;
     public float HappinessValue = 0;
     public float MaxHappinessValue = 100.0f;
     public float RateOfDescent = 0.1f;
     public float KitchenMultiplier = 5f;
     public float EngineMultiplier = 2f;
+
+	public GameObject player;
+	public GameObject gameWonCard;
+	public GameObject gameOverCard;
+	public Text winTimerText;
+
     float multiplier = 1;
+
+	private float winTimer;
+
+
     void Awake()
     {
         //Check if instance already exists
@@ -32,20 +47,30 @@ public class GameManager : MonoBehaviour
         //Sets this to not be destroyed when reloading scene
         DontDestroyOnLoad(gameObject);
     }
+
     // Use this for initialization
     void Start () {
         HappinessValue = MaxHappinessValue;
+		winTimer = maxTime;
+		StartCoroutine(ManageWinConditionTimer());
+
+		winTimerText.enabled = true;
+
+		// Make sure game over/won cards are disabled
+		gameOverCard.SetActive(false);
+		gameWonCard.SetActive(false);
 	}
-    void ProcessPassengerHappyness()
+
+    void ProcessPassengerHappiness()
     {
-        if (instance.HappinessValue > 0)
+        if (instance.HappinessValue >= 0)
             instance.HappinessValue -= instance.RateOfDescent * multiplier * Time.deltaTime;
         else
         {
             isGameOver = true;
-            isGameOver = false;
         }
     }
+
     void ProcessDebugEvent()
     {
         if (Input.GetButton("KitchenDebug"))
@@ -64,34 +89,76 @@ public class GameManager : MonoBehaviour
 	// Update is called once per frame
 	void FixedUpdate () {
 
+		if(!isGameWon && !isGameOver){
+			ProcessPassengerHappiness();
+		}
+		UpdateTimerText();
 
-        ProcessPassengerHappyness();
         if (isDebugging)
             ProcessDebugEvent();
        
     }
+
+	void UpdateTimerText(){
+		if (!isGameOver) {
+			string tempText;
+
+			if (isGameWon) {
+				tempText = "" + maxTime;
+			}
+			tempText = "" + (maxTime - winTimer);
+			if (tempText.IndexOf (".") >= 0) {
+				tempText = tempText.Substring (0, (tempText.IndexOf (".") + 2));
+			}
+			winTimerText.text = tempText + "/" + maxTime + "s";
+		}
+	}
+
     void OnGUI()
-    {
-
-        if (isGameOver)
+    {    
+        if (isGameWon)
         {
-            if (isGameWon)
-            {
-                GUI.Label(new Rect(Screen.height - 10, Screen.width - 40, 20, 80), "You WIN!");
-                if (GUI.Button(new Rect(Screen.height + 40, Screen.width - 80, 20, 20),"Play Again?"))
-                {
-                    SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-                }
-                    
-            }
-            else
-            {
-                GUI.Label(new Rect(Screen.height - 10, Screen.width - 40, 20, 80), "You Lose!");
-                if (GUI.Button(new Rect(Screen.height + 40, Screen.width - 80, 20, 20), "Play Again?"))
-                    Application.LoadLevel(1);
-            }
+			gameWonCard.SetActive(true);
+			TogglePlryMovement(false);
+//            GUI.Label(new Rect(Screen.height - 10, Screen.width - 40, 20, 80), "You WIN!");
+//            if (GUI.Button(new Rect(Screen.height + 40, Screen.width - 80, 20, 20),"Play Again?"))
+//            {
+//                SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+//            }
+                
+        }
 
+		if (isGameOver)
+		{
+			gameOverCard.SetActive(true);
+			TogglePlryMovement(false);
+			StopCoroutine(ManageWinConditionTimer());
+//            GUI.Label(new Rect(Screen.height - 10, Screen.width - 40, 20, 80), "You Lose!");
+//            if (GUI.Button(new Rect(Screen.height + 40, Screen.width - 80, 20, 20), "Play Again?"))
+//                Application.LoadLevel(1);
         }
     }
+
+	void TogglePlryMovement(bool setTo){
+		Movement[] movements = player.GetComponents<Movement>();
+		foreach(Movement m in movements){
+			m.enabled = setTo;
+		}
+	}
+
+	IEnumerator ManageWinConditionTimer(){
+		while (true) {
+			yield return new WaitForSeconds (0.1f);
+
+			winTimer -= 0.1f;
+			Debug.Log ("timer: " + winTimer);
+			if (winTimer <= 0 && HappinessValue > 0) {
+				winTimer = 0;
+				isGameWon = true;
+				StopCoroutine(ManageWinConditionTimer());
+			}
+		}
+
+	}
 
 }
