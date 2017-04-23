@@ -24,6 +24,8 @@ public class EventRoom : MonoBehaviour {
 	private float perilChangeRate = 1f;
 	private float perilChangeAmount = 0;
 
+	private EventRoomAnimManager animManager;
+
 	public bool roomIsDead = false; // public for debugging
 	public bool inPeril = false; // public for debugging
 	public bool plyrInRoom = false; // public for debugging
@@ -40,6 +42,8 @@ public class EventRoom : MonoBehaviour {
 		perilValue = MIN_PERIL;
 		this.ResetCountDownTimer();
 
+		animManager = this.gameObject.GetComponent<EventRoomAnimManager> ();
+
 		// Begin count down timer and peril/danger tracker
 		StartCoroutine(this.ManageCountDownTimer());
 		StartCoroutine(this.ManagePerilValue());
@@ -55,6 +59,7 @@ public class EventRoom : MonoBehaviour {
 			roomIsDead = true;
 		} else{ roomIsDead = false; }
 
+		this.UpdateDamageAnimations ();
 
 		/***DECREASE PERIL***/
 		if(plyrInRoom) {
@@ -105,6 +110,25 @@ public class EventRoom : MonoBehaviour {
 	public float GetPerilValue(){ return perilValue; }
 	public float GetMaxPerilValue(){ return MAX_PERIL; }
 	/**********************************/
+
+	private void UpdateDamageAnimations(){
+		if (inPeril) {
+			if (perilValue > 0){
+				if (perilValue <= (MAX_PERIL / 2f)) {
+					animManager.ToggleSparks (true);
+				}
+				if (perilValue > (MAX_PERIL / 2f)) {
+					animManager.ToggleSparks (false);
+					animManager.ToggleFire (true);
+				} else {
+					animManager.ToggleFire (false);
+				}
+			}
+		} else {
+			animManager.ToggleSparks (false);
+			animManager.ToggleFire (false);
+		}
+	}
 
 	/// Tell manager to increase peril value
 	private void IncrPerilValue(){
