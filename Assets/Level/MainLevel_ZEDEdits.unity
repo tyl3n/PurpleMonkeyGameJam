@@ -241,7 +241,7 @@ MonoBehaviour:
   maxTime: 100
   isDebugging: 1
   HappinessValue: 0
-  MaxHappinessValue: 100
+  MaxHappinessValue: 10
   RateOfDescent: 10
   KitchenMultiplier: 2
   EngineMultiplier: 1.5
