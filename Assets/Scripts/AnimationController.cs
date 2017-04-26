@@ -26,6 +26,7 @@ public class AnimationController : MonoBehaviour {
         {
             anim.SetBool("Horizontal", false);
         }
+        anim.SetBool("Repair", Input.GetButton("Interaction"));
         if (Input.GetAxis("Horizontal")<0)
         {
             spriteRender.flipX = true;

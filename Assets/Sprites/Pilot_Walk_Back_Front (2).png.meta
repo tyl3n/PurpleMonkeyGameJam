@@ -1,13 +1,13 @@
 fileFormatVersion: 2
 guid: 24f90e47d6fba6746bc1f3e2199fe8d9
-timeCreated: 1492972708
+timeCreated: 1492980946
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
     21300000: Pilot_Walk_Back_Front (2)_0
-    21300002: Pilot_Walk_Back_Front (2)_1
+    21300002: firstStep
     21300004: Pilot_Walk_Back_Front (2)_2
-    21300006: Pilot_Walk_Back_Front (2)_3
+    21300006: secondStep
     21300008: Pilot_Walk_Back_Front (2)_4
     21300010: Pilot_Walk_Back_Front (2)_5
     21300012: Pilot_Walk_Back_Front (2)_6
@@ -69,12 +69,12 @@ TextureImporter:
         width: 209
         height: 354
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: Pilot_Walk_Back_Front (2)_1
+      name: firstStep
       rect:
         serializedVersion: 2
         x: 412
@@ -82,7 +82,7 @@ TextureImporter:
         width: 191
         height: 341
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
@@ -95,20 +95,20 @@ TextureImporter:
         width: 209
         height: 349
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: Pilot_Walk_Back_Front (2)_3
+      name: secondStep
       rect:
         serializedVersion: 2
-        x: 1033
-        y: 561
+        x: 1036
+        y: 563
         width: 191
         height: 343
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
@@ -121,7 +121,7 @@ TextureImporter:
         width: 209
         height: 363
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
@@ -134,7 +134,7 @@ TextureImporter:
         width: 191
         height: 363
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
@@ -147,7 +147,7 @@ TextureImporter:
         width: 209
         height: 363
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
@@ -160,7 +160,7 @@ TextureImporter:
         width: 191
         height: 363
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0

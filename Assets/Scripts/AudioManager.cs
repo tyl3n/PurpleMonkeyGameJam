@@ -67,7 +67,7 @@ public class AudioManager : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 	
-		if (GameManager.instance.HappinessValue < 60 ) {
+		if (GameManager.instance.HappinessValue < 60 && GameManager.instance.HappinessValue > 30) {
 
 			StartCoroutine (FadeIn (mxSource[2], fadeInTime, mx2Vol));
 			StartCoroutine (FadeIn (mxSource[3], fadeInTime, mxGuitarVol));

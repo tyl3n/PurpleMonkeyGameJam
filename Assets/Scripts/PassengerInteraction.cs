@@ -16,7 +16,8 @@ public class PassengerInteraction : MonoBehaviour {
 
 	    if(CanInteract && Input.GetButton("Interaction"))
         {
-            GameManager.instance.HappinessValue += 2;
+            if (GameManager.instance.HappinessValue< GameManager.instance.MaxHappinessValue)
+                GameManager.instance.HappinessValue += 10;
 
 			audioSource.clip = AudioManager.instance.alienVoices [Random.Range (0, AudioManager.instance.alienVoices.Length)];
 			audioSource.Play ();

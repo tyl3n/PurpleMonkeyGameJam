@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Sparks
   - Fire
+  - Hazard
   layers:
   - Default
   - TransparentFX

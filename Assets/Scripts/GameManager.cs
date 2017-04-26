@@ -45,7 +45,7 @@ public class GameManager : MonoBehaviour
             Destroy(gameObject);
 
         //Sets this to not be destroyed when reloading scene
-        DontDestroyOnLoad(gameObject);
+        //DontDestroyOnLoad(gameObject);
     }
 
     // Use this for initialization
@@ -53,8 +53,8 @@ public class GameManager : MonoBehaviour
         HappinessValue = MaxHappinessValue;
 		winTimer = maxTime;
 		StartCoroutine(ManageWinConditionTimer());
-
-		winTimerText.enabled = true;
+        StartCoroutine(OnGameOver());
+        winTimerText.enabled = true;
 
 		// Make sure game over/won cards are disabled
 		gameOverCard.SetActive(false);
@@ -66,6 +66,12 @@ public class GameManager : MonoBehaviour
 
     void ProcessPassengerHappiness()
     {
+        EventRoom[] allRooms = FindObjectsOfType(typeof(EventRoom)) as EventRoom[];
+        multiplier = 1;
+        foreach (EventRoom eventRoom in allRooms)
+        {
+            multiplier +=  eventRoom.GetPerilValue()*3f;
+        }
         if (instance.HappinessValue >= 0)
             instance.HappinessValue -= instance.RateOfDescent * multiplier * Time.deltaTime;
         else
@@ -116,13 +122,29 @@ public class GameManager : MonoBehaviour
 			winTimerText.text = tempText + "/" + maxTime + "s";
 		}
 	}
-
+    IEnumerator OnGameOver()
+    {
+        if (isGameOver)
+        {
+            yield return new WaitForSeconds(2);
+            ReloadGame();
+        }
+        
+    }
+    void ReloadGame()
+    {
+        StopAllCoroutines();
+        HappinessValue = MaxHappinessValue;
+        SceneManager.LoadScene(0);
+    }
     void OnGUI()
     {    
         if (isGameWon)
         {
 			gameWonCard.SetActive(true);
 			TogglePlryMovement(false);
+            //StopAllCoroutines();
+            
 //            GUI.Label(new Rect(Screen.height - 10, Screen.width - 40, 20, 80), "You WIN!");
 //            if (GUI.Button(new Rect(Screen.height + 40, Screen.width - 80, 20, 20),"Play Again?"))
 //            {
@@ -134,10 +156,11 @@ public class GameManager : MonoBehaviour
 		{
 			gameOverCard.SetActive(true);
 			TogglePlryMovement(false);
-			StopAllCoroutines();//(ManageWinConditionTimer());
-//            GUI.Label(new Rect(Screen.height - 10, Screen.width - 40, 20, 80), "You Lose!");
-//            if (GUI.Button(new Rect(Screen.height + 40, Screen.width - 80, 20, 20), "Play Again?"))
-//                Application.LoadLevel(1);
+			//StopAllCoroutines();
+            StartCoroutine(OnGameOver());//(ManageWinConditionTimer());
+                                         //            GUI.Label(new Rect(Screen.height - 10, Screen.width - 40, 20, 80), "You Lose!");
+                                         //            if (GUI.Button(new Rect(Screen.height + 40, Screen.width - 80, 20, 20), "Play Again?"))
+                                         //                Application.LoadLevel(1);
         }
     }
 

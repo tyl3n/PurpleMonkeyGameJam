@@ -12,7 +12,11 @@ public class HappinessBar : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
        float scale = (GameManager.instance.HappinessValue / GameManager.instance.MaxHappinessValue<0)?0:GameManager.instance.HappinessValue / GameManager.instance.MaxHappinessValue;
-        GetComponent<RectTransform>().localScale = new Vector3( scale,1);
+        if (scale >1)
+        {
+            scale = 1;
+        }
+        GetComponent<RectTransform>().localScale = new Vector3( -scale,1);
         //GetComponent<Slider>();
 
     }
